@@ -1,0 +1,46 @@
+@if (conteudo$ | async; as conteudo) {
+<article class="detalhe">
+  <a class="voltar" routerLink="/conteudos"><span>←</span> Voltar para conteúdos</a>
+  <section class="apresentacao">
+    <div class="capa" [class]="'capa ' + conteudo.cor" aria-hidden="true">
+      <span>{{ conteudo.icone }}</span><small>Raxadinha</small>
+    </div>
+    <div class="informacoes">
+      <span class="categoria">{{ conteudo.categoria }}</span>
+      <h1>{{ conteudo.titulo }}</h1>
+      <p class="introducao">{{ conteudo.resumo }}</p>
+      <div class="metadados">
+        <div><span>Formato</span><strong>{{ conteudo.formato }}</strong></div>
+        <div><span>Acesso</span><strong>{{ conteudo.acesso }}</strong></div>
+        <div><span>Autor</span><strong>{{ conteudo.autor }}</strong></div>
+      </div>
+      <p class="preco"><span>Por apenas</span><strong>{{ conteudo.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR'
+          }}</strong></p>
+      <button class="botao-principal" type="button">Quero este conteúdo <span>→</span></button>
+      <p class="observacao">A ação de compra poderá ser conectada à API posteriormente.</p>
+    </div>
+  </section>
+  <section class="descricao">
+    <div class="texto">
+      <span class="rotulo">Sobre este conteúdo</span>
+      <h2>{{ conteudo.titulo }}</h2>
+      <p>{{ conteudo.descricao }}</p>
+    </div>
+    <aside>
+      <h3>O que você encontra</h3>
+      <ul>
+        @for (beneficio of conteudo.beneficios; track beneficio) {
+        <li><span>✓</span> {{ beneficio }}</li>
+        }
+      </ul>
+    </aside>
+  </section>
+</article>
+} @else {
+<section class="nao-encontrado">
+  <span>404</span>
+  <h1>Conteúdo não encontrado</h1>
+  <p>O item pode não existir ou ter sido removido da lista.</p>
+  <a routerLink="/conteudos">Ver todos os conteúdos</a>
+</section>
+}

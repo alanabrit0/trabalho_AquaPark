@@ -1,0 +1,97 @@
+<div class="home">
+  <section class="hero">
+    <div class="hero-conteudo">
+      <span class="etiqueta">Conteúdo digital sem complicação</span>
+      <h1>Suas ideias merecem <em>ganhar o mundo.</em></h1>
+      <p>O Raxadinha reúne criação, organização e venda de conteúdos digitais em um só lugar — simples para quem publica
+        e agradável para quem compra.</p>
+      <div class="acoes">
+        <a class="botao botao-primario" routerLink="/conteudos">Explorar conteúdos</a>
+        <a class="botao botao-secundario" routerLink="/sobre">Conhecer o projeto</a>
+      </div>
+      <div class="indicadores" aria-label="Destaques da plataforma">
+        <div><strong>100%</strong><span>digital</span></div>
+        <div><strong>24/7</strong><span>disponível</span></div>
+        <div><strong>∞</strong><span>ideias possíveis</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="circulo circulo-um"></div>
+      <div class="circulo circulo-dois"></div>
+      <div class="cartao cartao-principal">
+        <span class="icone">✦</span>
+        <small>Conteúdo em destaque</small>
+        <strong>Transforme conhecimento em oportunidade.</strong>
+        <div class="linha"><span></span><span></span></div>
+      </div>
+      <div class="cartao cartao-flutuante cartao-vendas"><span>↗</span>
+        <div><strong>Vendas</strong><small>crescendo por aqui</small></div>
+      </div>
+      <div class="cartao cartao-flutuante cartao-criadores"><span>♥</span>
+        <div><strong>Criadores</strong><small>ideias que conectam</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vitrine" aria-labelledby="titulo-vitrine">
+    <div class="vitrine-cabecalho">
+      <div>
+        <span class="etiqueta">Escolhidos para você</span>
+        <h2 id="titulo-vitrine">Conteúdos em destaque</h2>
+        <p>Uma amostra do que está esperando para ser descoberto.</p>
+      </div>
+      <div class="controles" aria-label="Controles do carrossel">
+        <button type="button" aria-label="Ver conteúdos anteriores" (click)="moverCarrossel(trilho, -1)">←</button>
+        <button type="button" aria-label="Ver próximos conteúdos" (click)="moverCarrossel(trilho, 1)">→</button>
+      </div>
+    </div>
+
+    <div class="trilho" #trilho tabindex="0" aria-label="Carrossel de conteúdos em destaque">
+      @for (conteudo of conteudosDestaque$ | async; track conteudo.id) {
+      <article class="card-conteudo">
+        <div class="capa" [class]="'capa ' + conteudo.cor">
+          <span>{{ conteudo.icone }}</span>
+          <small>Raxadinha</small>
+        </div>
+        <div class="card-corpo">
+          <span class="categoria">{{ conteudo.categoria }}</span>
+          <h3>{{ conteudo.titulo }}</h3>
+          <a [routerLink]="['/conteudos', conteudo.id]" [attr.aria-label]="'Conhecer ' + conteudo.titulo">Conhecer
+            <span>→</span></a>
+        </div>
+      </article>
+      }
+    </div>
+    <p class="dica-arraste">Arraste para o lado para ver mais conteúdos</p>
+  </section>
+
+  <section class="recursos" aria-labelledby="titulo-recursos">
+    <div class="cabecalho-secao">
+      <span class="etiqueta">Do começo ao clique</span>
+      <h2 id="titulo-recursos">Tudo o que seu conteúdo precisa</h2>
+      <p>Uma experiência pensada para deixar o trabalho organizado e o caminho do público mais curto.</p>
+    </div>
+    <div class="grade-recursos">
+      <article><span class="numero">01</span>
+        <h3>Organize</h3>
+        <p>Mantenha seus conteúdos reunidos, bem apresentados e fáceis de encontrar.</p>
+      </article>
+      <article class="destaque"><span class="numero">02</span>
+        <h3>Compartilhe</h3>
+        <p>Apresente suas ideias com clareza e alcance as pessoas certas.</p>
+      </article>
+      <article><span class="numero">03</span>
+        <h3>Cresça</h3>
+        <p>Acompanhe sua jornada e transforme conhecimento em novas possibilidades.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="chamada-final">
+    <div><span class="etiqueta">Pronto para começar?</span>
+      <h2>Tem sempre alguma coisa boa esperando para ser descoberta.</h2>
+    </div>
+    <a class="botao botao-claro" routerLink="/conteudos">Ver conteúdos <span>→</span></a>
+  </section>
+</div>
