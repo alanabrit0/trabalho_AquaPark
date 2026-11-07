@@ -1,7 +1,7 @@
 import { Component, inject } from "@angular/core";
 import { RouterLink, Router, ActivatedRoute } from "@angular/router";
 import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
-import { ViagensService } from "../../core/conteudo.service";
+import { Conteudo } from "../../core/models/conteudo.model";
 import { Validators } from "@angular/forms";
 import { ConteudosService } from "../../core/services/conteudos.service";
 

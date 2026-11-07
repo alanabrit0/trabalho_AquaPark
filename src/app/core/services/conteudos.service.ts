@@ -74,7 +74,7 @@ export class ConteudosService {
     return of(this.conteudosDemonstracao);
   }
 
-  buscarPorId(id: number): Observable<Conteudo | undefined> {
+  buscarPorId(id: string): Observable<Conteudo | undefined> {
     // Com a API: return this.http.get<Conteudo>(`URL_DA_API/conteudos/${id}`);
     return of(this.conteudosDemonstracao.find((conteudo) => conteudo.id === id));
   }
