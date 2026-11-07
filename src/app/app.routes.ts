@@ -30,7 +30,7 @@ export const routes: Routes = [
     title: "Admin | Raxadinha",
   },
   {
-    path: "admin/novo",
+    path: "admin/form",
     loadComponent: () =>
       import("./features/manutencao-conteudo/manutencao-conteudo").then(
         (m) => m.ManutencaoConteudo,
@@ -38,7 +38,7 @@ export const routes: Routes = [
     title: "Novo conteúdo | Raxadinha",
   },
   {
-    path: "admin/editar/:id",
+    path: "admin/form/:id",
     loadComponent: () =>
       import("./features/manutencao-conteudo/manutencao-conteudo").then(
         (m) => m.ManutencaoConteudo,
