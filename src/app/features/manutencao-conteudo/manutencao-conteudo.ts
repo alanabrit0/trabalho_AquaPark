@@ -24,34 +24,38 @@ export class ManutencaoConteudo {
   errorMessage = "";
 
   form = this.fb.nonNullable.group({
-    cidade: ['', [Validators.required, Validators.minLength(3)]],
-    pais: ['', [Validators.required]],
-    dataViagem: ['', [Validators.required]],
-    avaliacao: ['', [Validators.required]],
-    relato: ['', [Validators.required]],
-    meioTransporte: ['', [Validators.required]],
-    favorita: [],
+    id: ["", [Validators.required]],
+    nome: ["", [Validators.required, Validators.minLength(3)]],
+    capacidade: ["", [Validators.required]],
+    alturaMinima: ["", [Validators.required]],
+    localizacao: ["", [Validators.required]],
+    ultimaInspecao: ["", [Validators.required]],
+    descricao: ["", [Validators.required]],
+    emFuncionamento: [true, [Validators.required]],
+    responsavel: ["", [Validators.required]],
   });
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get("id");
     if (id) {
       this.editingId = id;
-      this.loadViagem(id);
+      this.loadConteudo(id);
     }
   }  
-  loadViagem(id: string): void {
+  loadConteudo(id: string): void {
     this.loadingData = true;
     this.conteudoService.getById(id).subscribe({
       next: (conteudo) => {
         this.form.patchValue({
-          titulo: conteudo.cidade,
-          descricao: conteudo.pais,
-          dataViagem: conteudo.dataViagem,
-          avaliacao: conteudo.avaliacao,
-          relato: conteudo.relato,
-          meioTransporte: conteudo.meioTransporte,
-          favorita: conteudo.favorita,
+          id: conteudo.id,
+          nome: conteudo.nome,
+          capacidade: conteudo.capacidade,
+          alturaMinima: conteudo.alturaMinima,
+          localizacao: conteudo.localizacao,
+          ultimaInspecao: conteudo.ultimaInspecao,
+          descricao: conteudo.descricao,
+          emFuncionamento: conteudo.emFuncionamento,
+          responsavel: conteudo.responsavel,
         });
         this.loadingData = false;
       },
@@ -61,25 +65,56 @@ export class ManutencaoConteudo {
       },
     });
   }    
+
   submit(): void {
-    this.sucessMessage = "";
-    this.errorMessage = "";
-      if (this.form.invalid) {
-        this.form.markAllAsTouched();
-        return;
-      }
-    
-      this.loading = true;
-      const formValue = this.form.getRawValue();
-      const conteudoData = {
-        cidade: formValue.cidade,
-        pais: formValue.pais,
-        dataViagem: formValue.dataViagem,
-        avaliacao: formValue.avaliacao,
-        relato: formValue.relato,
-        meioTransporte: formValue.meioTransporte,
-        favorita: formValue.favorita || false,
-      };
-      if (this.editingId !== null) {}
+  this.sucessMessage = "";
+  this.errorMessage = "";
+
+  if (this.form.invalid) {
+    this.form.markAllAsTouched();
+    return;
   }
-}
+
+  this.loading = true;
+  const formValue = this.form.getRawValue();
+  const conteudoData = {
+    id: formValue.id,
+    nome: formValue.nome,
+    capacidade:(formValue.capacidade),
+    alturaMinima: (formValue.alturaMinima),
+    localizacao: formValue.localizacao,
+    ultimaInspecao: formValue.ultimaInspecao,
+    descricao: formValue.descricao,
+    emFuncionamento: formValue.emFuncionamento,
+    responsavel: formValue.responsavel,
+  };
+
+  if (this.editingId !== null) {
+    this.conteudoService.update(this.editingId, conteudoData).subscribe({
+      next: () => {
+        this.loading = false;
+        this.sucessMessage = "Conteúdo atualizado com sucesso!";
+        setTimeout(() => this.router.navigate(["/admin"]), 1000);
+      },
+      error: () => {
+        this.loading = false;
+        this.errorMessage = "Erro ao atualizar conteúdo!";
+      },
+    });
+    return;
+  }
+
+  this.conteudoService.create(conteudoData).subscribe({
+    next: () => {
+      this.loading = false;
+      this.sucessMessage = "Conteúdo criado com sucesso!";
+      this.form.reset();
+      setTimeout(() => this.router.navigate(["/admin"]), 1000);
+    },
+    error: () => {
+      this.loading = false;
+      this.errorMessage = "Erro ao criar conteúdo!"; 
+    },
+  });
+  }
+}  

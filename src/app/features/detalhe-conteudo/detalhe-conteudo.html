@@ -3,33 +3,33 @@
   <a class="voltar" routerLink="/conteudos"><span>←</span> Voltar para conteúdos</a>
   <section class="apresentacao">
     <div class="capa" [class]="'capa ' + conteudo.cor" aria-hidden="true">
-      <span>{{ conteudo.icone }}</span><small>Raxadinha</small>
+      <span>{{ conteudo.icone }}</span><small>AquaPark</small>
     </div>
     <div class="informacoes">
-      <span class="categoria">{{ conteudo.categoria }}</span>
-      <h1>{{ conteudo.titulo }}</h1>
-      <p class="introducao">{{ conteudo.resumo }}</p>
+      <span class="nome">{{ conteudo.nome }}</span>
+      <h1>{{ conteudo.nome }}</h1>
+      <p class="introducao">{{ conteudo.descricao }}</p>
       <div class="metadados">
-        <div><span>Formato</span><strong>{{ conteudo.formato }}</strong></div>
-        <div><span>Acesso</span><strong>{{ conteudo.acesso }}</strong></div>
-        <div><span>Autor</span><strong>{{ conteudo.autor }}</strong></div>
+        <div><span>Capacidade</span><strong>{{ conteudo.capacidade }}</strong></div>
+        <div><span>Altura Mínima</span><strong>{{ conteudo.alturaMinima }}</strong></div>
+        <div><span>Responsável</span><strong>{{ conteudo.responsavel }}</strong></div>
       </div>
-      <p class="preco"><span>Por apenas</span><strong>{{ conteudo.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR'
+      <p class="preco"><span>Por apenas</span><strong>{{ conteudo.localizacao | currency:'BRL':'symbol':'1.2-2':'pt-BR'
           }}</strong></p>
-      <button class="botao-principal" type="button">Quero este conteúdo <span>→</span></button>
-      <p class="observacao">A ação de compra poderá ser conectada à API posteriormente.</p>
+      <button class="botao-principal" type="button">Quero esta atração <span>→</span></button>
+      <p class="observacao">A ação de compra poderá ser efetuada posteriormente.</p>
     </div>
   </section>
   <section class="descricao">
     <div class="texto">
-      <span class="rotulo">Sobre este conteúdo</span>
-      <h2>{{ conteudo.titulo }}</h2>
+      <span class="rotulo">Sobre esta atração</span>
+      <h2>{{ conteudo.nome }}</h2>
       <p>{{ conteudo.descricao }}</p>
     </div>
     <aside>
       <h3>O que você encontra</h3>
       <ul>
-        @for (beneficio of conteudo.beneficios; track beneficio) {
+        @for (beneficio of conteudo.descricao; track beneficio) {
         <li><span>✓</span> {{ beneficio }}</li>
         }
       </ul>

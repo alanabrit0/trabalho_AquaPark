@@ -1,7 +1,7 @@
 <section class="list-box">
     <div class="top-bar">
-        <h2>Lista de Viagens</h2>
-        <a routerLink="/admin/form" class="btn">Adicionar Viagem</a>
+        <h2>Controle de Atrações AquaPark</h2>
+        <a routerLink="/admin/form" class="btn">Adicionar Atração</a>
     </div>    
     @if(sucessMessage) {
     <div class="success-message">
@@ -13,26 +13,26 @@
         {{ errorMessage }}
     </div>
     }
-    @if(loading) {
+    @if(loading()) {
     <div class="loading">   
-        <p>Carregando viagens...</p>
+        <p>Carregando atrações...</p>
     </div>     
     }
-    @if(!loading && conteudos.length === 0) {
+    @if(!loading() && conteudos().length === 0) {
     <div class="empty-state">
-        <p>Nenhum conteúdo cadastrado.</p>
+        <p>Nenhuma atração cadastrada.</p>
     </div>
     }
 
-    <div class="viagem-grid">
-        @for(viagem of conteudos; track viagem.id) {
-        <div class="viagem-item">
-            <h3> {{ viagem.titulo }} </h3>
-            <p> {{ viagem.descricao }} </p>
-            <p> {{ viagem.preco}}</p>
+    <div class="atracao-grid">
+        @for(atracao of conteudos(); track atracao.id) {
+        <div class="atracao-item">
+            <h3> {{ atracao.nome }} </h3>
+            <p> {{ atracao.descricao }} </p>
+            <p> {{ atracao.capacidade}}</p>
             <div class="actions">
-                <button type="button" class="btn-edit" (click)="edit(viagem.id)">Editar</button>
-                <button type="button" class="btn-delete" (click)="remove(viagem.id)">Excluir</button>
+                <button type="button" class="btn-edit" (click)="edit(atracao.id)">Editar</button>
+                <button type="button" class="btn-delete" (click)="remove(atracao.id)">Excluir</button>
             </div>
         </div>    
         }

@@ -1,3 +1,148 @@
-<h1>Manutenção de conteúdo</h1>
-<p>O formulário de cadastro e edição será implementado nas próximas aulas.</p>
-<a routerLink="/admin">Voltar para administração</a>
+<div class="form-box">
+    <h2>
+        @if(editingId !== null) {
+            Editar Conteúdo
+        } @else {
+            Adicionar Conteúdo
+        }
+    </h2>
+
+     @if (loadingData){
+            <div class="info-message">
+                Carregando dados do conteúdo...
+            </div>
+        }
+        @if (sucessMessage) {
+            <div class="success-message">
+                {{ sucessMessage }}
+            </div>
+        }
+        @if (errorMessage) {
+            <div class="error-message">
+                {{ errorMessage }}
+            </div>
+        }
+
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="field">
+                <label for="Id">ID:</label>
+                <input id="Id" type="text" formControlName="id" />
+                <span class="character-count">
+                    {{form.controls.id.value}} caracteres
+                </span>
+
+                @if (form.controls.id.touched &&
+                form.controls.id.invalid) {
+                    <small> Informe um ID válido</small>
+                }
+            </div>
+
+            <div class="field">
+                <label for="nome">Nome:</label>
+                <input id="nome" type="text" formControlName="nome" />
+                <span class="character-count">
+                    {{form.controls.nome.value.length}} caracteres
+                </span>
+
+                @if (form.controls.nome.touched &&
+                form.controls.nome.invalid) {
+                    <small> Informe um nome com no mínimo 2 caracteres</small>
+                }
+            </div>
+
+            <div class="field">
+                <label for="descricao">Descrição:</label>
+                <input id="descricao" type="text" formControlName="descricao" />
+                <span class="character-count">
+                    {{form.controls.descricao.value.length}} caracteres
+                </span>
+
+                @if (form.controls.descricao.touched &&
+                form.controls.descricao.invalid) {
+                    <small> Informe uma descrição com no mínimo 10 caracteres</small>
+                }
+            </div>
+
+            <div class="field">
+                <label for="capacidade">Capacidade:</label>
+                <input id="capacidade" type="number" formControlName="capacidade" />
+                <span class="character-count">
+                    {{form.controls.capacidade.value}} pessoas
+                </span>
+
+                @if (form.controls.capacidade.touched &&
+                form.controls.capacidade.invalid) {
+                    <small> Informe a capacidade </small>
+                }
+            </div> 
+
+            <div class="field">
+                <label for="alturaMinima">Altura Mínima:</label>
+                <input id="alturaMinima" type="number" formControlName="alturaMinima" />
+                <span class="character-count">
+                    {{form.controls.alturaMinima.value}} metros
+                </span>
+
+                @if (form.controls.alturaMinima.touched &&
+                form.controls.alturaMinima.invalid) {
+                    <small> Informe a altura</small>
+                }
+            </div>
+
+            <div class="field">
+                <label for="ultimaInspecao">Última Inspeção:</label>
+                <input id="ultimaInspecao" type="date" formControlName="ultimaInspecao" />
+
+                @if (form.controls.ultimaInspecao.touched &&
+                form.controls.ultimaInspecao.invalid) {
+                    <small> Informe uma data válida</small>
+                }
+            </div>
+
+            <div class="field">
+                <label for="emFuncionamento">Em Funcionamento:</label>
+                <input id="emFuncionamento" type="checkbox" formControlName="emFuncionamento" />
+                @if (form.controls.emFuncionamento.touched &&
+                form.controls.emFuncionamento.invalid) {
+                    <small> Informe se o conteúdo está em funcionamento</small>
+                }
+            </div>
+
+            <div class="field">
+                <label for="Localização">Localização:</label>
+                <input id="Localização" type="text" formControlName="localizacao" />
+                <span class="character-count">
+                    {{form.controls.localizacao.value}}
+                </span>
+
+                @if (form.controls.localizacao.touched &&
+                form.controls.localizacao.invalid) {
+                    <small> Informe uma localização válida</small>
+                }
+            </div>
+
+            <div class="field">
+                <label for="Responsável">Responsável:</label>
+                <input id="Responsável" type="text" formControlName="responsavel" />
+                <span class="character-count">
+                    {{form.controls.responsavel.value.length}} caracteres
+                </span>
+
+                @if (form.controls.responsavel.touched &&
+                form.controls.responsavel.invalid) {
+                    <small> Informe um responsável válido</small>
+                }
+            </div>
+
+            <button type="submit" [disabled]="loading || loadingData">
+                @if (loading) {
+                    Salvando...
+                } @else if (editingId !== null) {
+                    Atualizar
+                } @else {
+                    Salvar
+                }
+            </button>
+        </form>
+
+</div>

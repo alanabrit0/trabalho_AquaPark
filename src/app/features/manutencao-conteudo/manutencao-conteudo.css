@@ -1,1 +1,77 @@
-/* Espaço reservado para os estilos desta página. */
+/* Formulário de manutenção de conteúdo.  */
+.form-box {
+    max-width: 760px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+form,
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+form {
+    gap: 1.25rem;
+}
+
+input,
+textarea,
+button {
+    font: inherit;
+}
+
+input,
+textarea {
+    padding: 0.75rem;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.character-count {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.field small,
+.error-message {
+    color: #b42318;
+}
+
+.success-message {
+    color: #067647;
+}
+
+.beneficios {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.beneficio-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+}
+
+.checkbox-field {
+    flex-direction: row;
+    align-items: center;
+}
+
+.checkbox-field input {
+    width: auto;
+}
+
+button {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+}
+
+.add-button,
+.remove-button {
+    align-self: flex-start;
+}

@@ -1,14 +1,13 @@
 export interface Conteudo {
   id: string;
-  categoria: string;
-  titulo: string;
-  icone: string;
-  cor: "azul" | "dourado" | "verde" | "lilas" | "coral";
-  resumo: string;
   descricao: string;
-  autor: string;
-  formato: string;
-  acesso: string;
-  preco: number;
-  beneficios: string[];
+  nome: string;
+  capacidade?: string;
+  alturaMinima?: string;
+  localizacao: string;
+  ultimaInspecao: string;
+  emFuncionamento: boolean;
+  responsavel?: string;
+  icone?: string;
+  cor?: string;
 }
